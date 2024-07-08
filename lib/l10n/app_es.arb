@@ -1,0 +1,28 @@
+{
+  "@@locale": "es",
+  "welcome": "¡Bienvenido!",
+  "playing": "En Cartelera",
+  "popular": "Popular",
+  "upcoming": "Próximamente",
+  "more": "Más",
+  "about": "Acerca de",
+  "overview": "Resumen",
+  "casting": "Reparto",
+  "images": "Imágenes",
+  "recommendations": "Recomendaciones",
+  "back_home": "Volver a Inicio",
+  "no_data": "Sin datos",
+  "error": "Error {msg}",
+  "@error": {
+    "description": "Un mensaje de error",
+    "placeholders": {
+      "msg": {
+        "type": "String",
+        "example": "404"
+      }
+    }
+  },
+  "tmdb_description": "La base de datos más grande del mundo de películas y programas de televisión.",
+  "storyset_description": "Sitio web que ofrece ilustraciones y animaciones gratuitas para tus proyectos.",
+  "freepik_description": "Sitio web que ofrece ilustraciones y animaciones gratuitas para tus proyectos."
+}

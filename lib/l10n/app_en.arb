@@ -1,0 +1,28 @@
+{
+  "@@locale": "en",
+  "welcome": "Welcome!",
+  "playing": "Now Playing",
+  "popular": "Popular",
+  "upcoming": "Upcoming",
+  "more": "More",
+  "about": "About",
+  "overview": "Overview",
+  "casting": "Casting",
+  "images": "Images",
+  "recommendations": "Recommendations",
+  "back_home": "Back to Home",
+  "no_data": "No data",
+  "error": "Error {msg}",
+  "@error": {
+    "description": "An error message",
+    "placeholders": {
+      "msg": {
+        "type": "String",
+        "example": "404"
+      }
+    }
+  },
+  "tmdb_description": "The world's largest database of movies and TV shows.",
+  "storyset_description": "Website that offers free illustrations and animations for your projects.",
+  "freepik_description": "Sitio web que ofrece ilustraciones y animaciones gratuitas para tus proyectos."
+}
