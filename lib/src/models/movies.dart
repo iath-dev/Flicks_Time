@@ -687,7 +687,8 @@ class MovieDetailsResponse extends MovieBase {
   final dynamic belongsToCollection;
   final int budget, revenue, runtime;
   final List<Genre> genres;
-  final String homepage, imdbId, status, tagline;
+  final String homepage, status, tagline;
+  final String? imdbId;
   final List<String> originCountry;
   final List<ProductionCompany> productionCompanies;
   final List<ProductionCountry> productionCountries;
@@ -711,7 +712,7 @@ class MovieDetailsResponse extends MovieBase {
     required this.budget,
     required this.genres,
     required this.homepage,
-    required this.imdbId,
+    this.imdbId,
     required this.originCountry,
     required this.productionCompanies,
     required this.productionCountries,

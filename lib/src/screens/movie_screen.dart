@@ -57,7 +57,7 @@ class MovieScreen extends StatelessWidget {
                     Wrap(
                       spacing: 8.0,
                       children: List.generate(
-                        3,
+                        data.genres.length > 3 ? 3 : data.genres.length,
                         (index) => Chip(
                           backgroundColor: theme.colorScheme.primaryContainer,
                           labelStyle: theme.textTheme.labelLarge!.copyWith(
@@ -73,20 +73,11 @@ class MovieScreen extends StatelessWidget {
                           style: theme.textTheme.bodyMedium),
                     ),
                     const SizedBox(height: 16.0),
-                    _DetailsSection(
-                      title: AppLocalizations.of(context)!.casting,
-                      child: _CastList(args.id),
-                    ),
+                    _CastList(args.id),
                     const SizedBox(height: 16.0),
-                    _DetailsSection(
-                      title: AppLocalizations.of(context)!.images,
-                      child: _MovieImages(id: args.id),
-                    ),
+                    _MovieImages(id: args.id),
                     const SizedBox(height: 16.0),
-                    _DetailsSection(
-                      title: AppLocalizations.of(context)!.recommendations,
-                      child: _RecommendationsList(args.id),
-                    ),
+                    _RecommendationsList(args.id),
                   ]),
                 )
               ],
@@ -188,21 +179,29 @@ class _MovieImages extends StatelessWidget {
 
           final data = snapshot.data!;
 
-          return SizedBox(
-            height: 120.0,
-            child: ListView.separated(
-              itemBuilder: (context, index) => ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: FadeInImage.assetNetwork(
-                    height: double.infinity,
-                    fit: BoxFit.cover,
-                    placeholder: 'assets/placeholder_logo.png',
-                    image: ImageUtils.getImagePath(
-                        data.backdrops[index].filePath)),
+          if (data.backdrops.isEmpty) {
+            return Container();
+          }
+
+          return _DetailsSection(
+            title: AppLocalizations.of(context)!.images,
+            child: SizedBox(
+              height: 120.0,
+              child: ListView.separated(
+                itemBuilder: (context, index) => ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: FadeInImage.assetNetwork(
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                      placeholder: 'assets/placeholder_logo.png',
+                      image: ImageUtils.getImagePath(
+                          data.backdrops[index].filePath)),
+                ),
+                itemCount: data.backdrops.length,
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (context, index) =>
+                    const SizedBox(width: 16.0),
               ),
-              itemCount: data.backdrops.length,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (context, index) => const SizedBox(width: 16.0),
             ),
           );
         });
@@ -291,15 +290,22 @@ class _RecommendationsList extends StatelessWidget {
 
           final data = snap.data!;
 
-          return SizedBox(
-            height: 200.0,
-            child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) =>
-                    MovieCard(movie: data.results[index]),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(width: 16.0),
-                itemCount: data.results.length),
+          if (data.results.isEmpty) {
+            return Container();
+          }
+
+          return _DetailsSection(
+            title: AppLocalizations.of(context)!.recommendations,
+            child: SizedBox(
+              height: 200.0,
+              child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) =>
+                      MovieCard(movie: data.results[index]),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 16.0),
+                  itemCount: data.results.length),
+            ),
           );
         });
   }
@@ -355,38 +361,45 @@ class _CastList extends StatelessWidget {
 
           final data = snapshot.data!;
 
-          return SizedBox(
-            height: 100.0,
-            child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => SizedBox(
-                      width: 80.0,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          CircleAvatar(
-                            radius: 30.0,
-                            foregroundImage:
-                                data.cast[index].profilePath != null
-                                    ? NetworkImage(
-                                        ImageUtils.getImagePath(
-                                          data.cast[index].profilePath!,
-                                        ),
-                                      )
-                                    : const AssetImage('assets/avatar.jpeg'),
-                          ),
-                          Text(
-                            data.cast[index].name,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.labelMedium,
-                          ),
-                        ],
+          if (data.cast.isEmpty) {
+            return Container();
+          }
+
+          return _DetailsSection(
+            title: AppLocalizations.of(context)!.casting,
+            child: SizedBox(
+              height: 100.0,
+              child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => SizedBox(
+                        width: 80.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CircleAvatar(
+                              radius: 30.0,
+                              foregroundImage:
+                                  data.cast[index].profilePath != null
+                                      ? NetworkImage(
+                                          ImageUtils.getImagePath(
+                                            data.cast[index].profilePath!,
+                                          ),
+                                        )
+                                      : const AssetImage('assets/avatar.jpeg'),
+                            ),
+                            Text(
+                              data.cast[index].name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.labelMedium,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(width: 16.0),
-                itemCount: data.cast.length),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 16.0),
+                  itemCount: data.cast.length),
+            ),
           );
         });
   }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flicks_time/src/config/config.dart';
 import 'package:flicks_time/src/models/models.dart';
 import 'package:flutter/widgets.dart';
@@ -19,8 +17,6 @@ class ApiService {
     Uri uri = Uri.parse(
         '$baseUri/$apiVersion/movie/$endpoint?page=$page&language=${locale.languageCode}');
 
-    log(uri.toString());
-
     final response =
         await http.get(uri, headers: {'Authorization': 'Bearer $apiToken'});
 
@@ -35,8 +31,6 @@ class ApiService {
   Future<ApiResponse> searchMovie(String query, [int page = 1]) async {
     Uri uri = Uri.parse(
         '$baseUri/$apiVersion/search/movie?query=$query&page=$page&language=${locale.languageCode}');
-
-    log(uri.toString());
 
     final response =
         await http.get(uri, headers: {'Authorization': 'Bearer $apiToken'});
@@ -54,8 +48,6 @@ class ApiService {
       Uri uri = Uri.parse(
           '$baseUri/$apiVersion/movie/$id?language=${locale.languageCode}');
 
-      log(uri.toString());
-
       final response =
           await http.get(uri, headers: {'Authorization': 'Bearer $apiToken'});
 
@@ -66,16 +58,12 @@ class ApiService {
         throw Exception('Failed to load data');
       }
     } catch (e) {
-      log(e.toString());
-      print(e);
       throw Exception('Failed to load data');
     }
   }
 
   Future<MoviesImages> getMovieImages(int id) async {
     Uri uri = Uri.parse('$baseUri/$apiVersion/movie/$id/images');
-
-    log(uri.toString());
 
     final response =
         await http.get(uri, headers: {'Authorization': 'Bearer $apiToken'});
@@ -92,8 +80,6 @@ class ApiService {
     Uri uri = Uri.parse(
         '$baseUri/$apiVersion/movie/$id/recommendations?language=${locale.languageCode}');
 
-    log(uri.toString());
-
     final response =
         await http.get(uri, headers: {'Authorization': 'Bearer $apiToken'});
 
@@ -108,8 +94,6 @@ class ApiService {
   Future<MovieCast> getMovieCast(int id) async {
     Uri uri = Uri.parse(
         '$baseUri/$apiVersion/movie/$id/credits?language=${locale.languageCode}');
-
-    log(uri.toString());
 
     final response =
         await http.get(uri, headers: {'Authorization': 'Bearer $apiToken'});
