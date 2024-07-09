@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flicks Time</title>
     <style>
-        body {
+        body, html {
+            height: 100%;
+            margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f8d7da; /* Color rojo claro */
-            text-align: center;
-            padding: 20px;
-            margin: 0;
+            display: flex;
+            flex-direction: column;
         }
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: auto;
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1; /* Hace que ocupe todo el espacio disponible */
         }
         h1 {
             color: #dc3545; /* Color rojo */
@@ -41,12 +43,16 @@
         }
         footer {
             margin-top: 20px;
+            text-align: center;
             color: #6c757d; /* Color gris */
         }
-        .email-link {
+        .email-link, .github-link {
             color: #6c757d;
             text-decoration: none;
             font-weight: bold;
+        }
+        .github-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -58,6 +64,7 @@
     </div>
     <footer>
         <p>Contact me at <a class="email-link" href="mailto:jdnl95@gmail.com">jdnl95@gmail.com</a></p>
+        <p>Check out my GitHub profile: <a class="github-link" href="https://github.com/iath-dev">iath-dev</a></p>
         <a href="https://play.google.com/store/apps/details?id=com.your.app.package">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/320px-Google_Play_Store_badge_EN.svg.png" alt="Download on Google Play" width="200">
         </a>
