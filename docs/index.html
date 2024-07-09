@@ -8,20 +8,19 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f8d7da; /* Color rojo claro */
-            padding: 20px;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
         }
         .container {
-            max-width: 600px;
             background-color: white;
             padding: 40px;
-            border-radius: 8px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            text-align: center;
+            text-align: justify;
+            flex: 1;
         }
         h1 {
             color: #dc3545; /* Color rojo */
@@ -35,6 +34,7 @@
             background-color: #4285f4; /* Color de Google Play */
             color: white;
             text-decoration: none;
+            margin-left: 16px;
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
@@ -44,8 +44,17 @@
         }
         footer {
             margin-top: 20px;
-            text-align: center;
+            text-align: justify;
             color: #6c757d; /* Color gris */
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 90vw;
+            padding: 8px 16px;
+            margin: 0px;
+        }
+        footer > div {
+            flex: 1;
         }
         .email-link, .github-link {
             color: #6c757d;
@@ -64,8 +73,10 @@
         <p>Download it now on <a class="google-play-link" href="https://play.google.com/store/apps/details?id=com.your.app.package">Google Play</a>.</p>
     </div>
     <footer>
-        <p>Contact me at <a class="email-link" href="mailto:jdnl95@gmail.com">jdnl95@gmail.com</a></p>
-        <p>Check out my GitHub profile: <a class="github-link" href="https://github.com/iath-dev">iath-dev</a></p>
+        <div>
+            <p>Contact me at <a class="email-link" href="mailto:jdnl95@gmail.com">jdnl95@gmail.com</a></p>
+            <p>Check out my GitHub profile: <a class="github-link" href="https://github.com/iath-dev">iath-dev</a></p>
+        </div>
         <a href="https://play.google.com/store/apps/details?id=com.your.app.package">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/320px-Google_Play_Store_badge_EN.svg.png" alt="Download on Google Play" width="200">
         </a>
